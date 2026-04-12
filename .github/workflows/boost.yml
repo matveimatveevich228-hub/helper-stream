@@ -17,5 +17,6 @@ jobs:
       
       - name: Run Viewer
         run: |
-          streamlink --retry-streams 30 --retry-max 5 --http-header "User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/122.0.0.0" https://www.twitch.tv/kant11k audio_only --stdout > /dev/null &
+          # Ссылка изменена на https://www.twitch.tv/evesia
+          streamlink --retry-streams 30 --retry-max 5 --http-header "User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/122.0.0.0" https://www.twitch.tv/evesia audio_only --stdout > /dev/null &
           sleep 21600
