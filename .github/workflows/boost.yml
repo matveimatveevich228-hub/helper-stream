@@ -1,4 +1,4 @@
-name: Stream_Support_2026
+name: Stream_Safe_Support
 on:
   workflow_dispatch:
 
@@ -9,14 +9,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        id: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+        # Уменьшили до 5, чтобы не привлекать внимание модерации
+        id: [1, 2, 3, 4, 5]
     steps:
-      - name: Install Latest Streamlink
+      - name: Install Streamlink
         run: |
           python3 -m pip install --upgrade streamlink
       
       - name: Run Viewer
         run: |
-          # Ссылка изменена на https://www.twitch.tv/evesia
+          # Каждый бот ждет случайное время перед стартом (от 5 до 40 секунд)
+          # Это имитирует заход реальных людей в разное время
+          sleep $(( (RANDOM % 35) + 5 ))
           streamlink --retry-streams 30 --retry-max 5 --http-header "User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/122.0.0.0" https://www.twitch.tv/evesia audio_only --stdout > /dev/null &
           sleep 21600
